@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.md text eol=lf whitespace=-blank-at-eol
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.mjs text eol=lf
+docs/source/spec-v4.md -text -eol whitespace=-blank-at-eol

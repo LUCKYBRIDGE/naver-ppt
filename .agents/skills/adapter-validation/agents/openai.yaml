@@ -1,0 +1,4 @@
+interface:
+  display_name: "렌더러와 웹 호환성"
+  short_description: "파일·웹 어댑터 비교 실험과 기능별 지원 수준 판정"
+  default_prompt: "Use $adapter-validation to evaluate renderer and web-provider capabilities with evidence."

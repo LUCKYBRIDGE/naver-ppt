@@ -1,0 +1,4 @@
+interface:
+  display_name: "발표 상태와 명령"
+  short_description: "자료 교차와 발표·편집 선택 분리 및 상태 전환 구현"
+  default_prompt: "Use $presenter-state to implement and verify presentation session transitions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "빠른 수정 레이어"
+  short_description: "단색 글상자와 최대 글씨 맞춤·판서·정규화 좌표 구현"
+  default_prompt: "Use $slide-overlays to implement and verify quick text boxes and slide overlays."

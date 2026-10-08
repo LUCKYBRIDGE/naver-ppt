@@ -1,0 +1,4 @@
+interface:
+  display_name: "웨일 확장 기반"
+  short_description: "프로젝트 MV3 패키지와 독립 창·권한·브라우저 API 구현"
+  default_prompt: "Use $whale-extension to implement and verify the Whale Class Presenter extension boundary."

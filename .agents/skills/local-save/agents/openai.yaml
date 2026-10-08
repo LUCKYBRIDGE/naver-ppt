@@ -1,0 +1,4 @@
+interface:
+  display_name: "로컬 저장과 복구"
+  short_description: "원본 보존과 편집 델타·로컬 내보내기·복구 흐름 구현"
+  default_prompt: "Use $local-save to implement and verify local session backup and copy export."
