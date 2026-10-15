@@ -1,17 +1,23 @@
 # 구현 순서와 현재 진행 상태
 
-원문 §19.5 A~F를 작업 순서로 사용한다. §13 Phase 0~5는 제품 이정표이며 같은 이름의 완료 단계로 혼동하지 않는다. **이번 요청 범위는 준비 기반 구축**이며 전체 MVP 개발 완료가 아니다.
+최상위 기준은 [PRD v5 §24](../naver-ppt_PRD_v5.md)이며 교사 대상 네이버 웨일 공모전 참가를 위해 개발한다. 아래 v4 단계 표는 기존 작업 추적 자료다. 현재 순서는 **A Core Reliability → B PDF Vertical Slice → C Preflight → D PPTX Fidelity Spike → E Windows Quick Launch → F PPTX Partial → G Legacy/Web**이다.
+
+## v5 현재 상태와 다음 작업
+
+Stage A에 세션/창 UI를 연결했고 Stage B의 PDF.js 6.4.299 Import/독립 렌더/중복·원본 재연결을 구현했다. 80개 자동 테스트 및 실제 합성 PDF A5/B2/A5·B8 독립 노트·빌드 CSP·warm offline page 보조 검증 통과. 실제 Whale·overlay/export/종료/media와 후속 포맷/Bridge가 남아 있다. 다음은 글상자/판서/가리개 draft→commit·정식 저장/종료다. [제품 전체 계획](plans/2026-10-11-product-completion.md), [PDF 단위 계획](plans/2026-10-11-pdf-import-render.md), [인수인계](tasks/current.md)를 확인한다.
+
+## v4 추적표 (역사적 단계 이름)
 
 | 작업 | 관련 FR/실험 | 다음 결과물 | 현재 |
 |---|---|---|---|
 | 준비 | 전체 기반 | 지침·스킬·타입·빌드·검증 경로 | 구축; 실행 결과는 TEST_RESULTS 확인 |
-| A1 창 경로 | FR-001/007, X-01 | 네 화면과 독립 창, 창 재사용/재연결 | 초기 화면·창 생성 코드만 있음, 웨일 미검증 |
-| A2 상태/동기화 | FR-004/008/014 | 명령 검증, revision, 순수 reducer, durable commit | 타입 계약만 있음 |
+| A1 창 경로 | FR-001/007, X-01 | 네 화면과 독립 창, 창 재사용/재연결 | 수업별 창 재사용/재연결 구현(자동검증), 웨일 미검증 |
+| A2 상태/동기화 | FR-004/008/014 | 명령 검증, revision, 순수 reducer, durable commit | 상태·저장·공개 projection·UI 동기화 자동검증; Whale 미검증 |
 | A3 화면 배치 | FR-002, X-02 | 모니터 지정/해제 복구, 단일 화면 대안 | 예정 |
-| B PDF 수직 기능 | FR-003/004/006/008/011 | PDF.js, 2개 자료 전환, 위치·레이어 복원 | 예정 |
+| B PDF 수직 기능 | FR-003/004/006/008/011 | PDF.js, 2개 자료 전환, 위치·레이어 복원 | Import/독립 렌더·노트 보조 검증; overlay/media/export/종료/Whale 남음 |
 | C 빠른 수정 | FR-009/010/016/017 | 우클릭·터치, 색 후보, 고정 상자, 폰트 맞춤 | 타입 계약만 있음 |
-| D 재생·노트·도구 | FR-005/006/015/016 | Player 타임라인, 미디어, 노트·타이머 | 타입 계약만 있음 |
-| E 저장·복구·종료 | FR-011~014/018/020 | IndexedDB 델타, wcp.json, PDF 복사본, 복원 | 타입 계약만 있음 |
+| D 재생·노트·도구 | FR-005/006/015/016 | Player 타임라인, 미디어, 노트·타이머 | 비공개 노트 UI/저장 연결; 재생/타이머/도구 미구현 |
+| E 저장·복구·종료 | FR-011~014/018/020 | IndexedDB 델타, wcp.json, PDF 복사본, 복원 | IndexedDB 저장/재연결 구현; 정식 export/종료 UI 미구현 |
 | F 형식/웹 확장 | FR-019/021~023 | PPTX 비교·부분 지원, W0 후 W1~3 실험 | 예정 |
 | 안정화 | 전체 | 큰 파일·폰트·오프라인·권한·장애 회귀 | 예정 |
 

@@ -5,6 +5,8 @@ description: 웨일 클래스 프레젠터의 IndexedDB 델타, 로컬 편집정
 
 # 로컬 저장과 복구
 
+[PRD v5](../../../naver-ppt_PRD_v5.md) §14/28을 우선한다. 상태와 command receipt의 원자적 저장 및 revision CAS를 구현하고 실제 브라우저 재시작 복구로 검증한다. repository 대역 통과는 실제 영속화 증거가 아니다.
+
 [STORAGE_POLICY.md](../../../docs/STORAGE_POLICY.md)와 [DATA_CONTRACTS.md](../../../docs/DATA_CONTRACTS.md)를 기준으로 한다.
 
 - 원본은 참조/읽기만. IndexedDB는 델타·참조·복구 저널이고 정식 백업은 로컬 `.wcp.json`이다. Blob/File/원본 바이트·미디어 전체를 기본 세션 JSON에 넣지 않는다.

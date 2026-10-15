@@ -3,9 +3,10 @@ import type { WindowRole } from '../shared/windowMessages';
 export function windowOptions(
   role: WindowRole,
   getURL: (path: string) => string,
+  sessionId?: string,
 ): chrome.windows.CreateData {
   return {
-    url: getURL(`${role}/index.html`),
+    url: getURL(`${role}/index.html`) + (sessionId ? `?sessionId=${encodeURIComponent(sessionId)}` : ''),
     type: 'popup',
     width: role === 'remote' ? 420 : 1100,
     height: role === 'remote' ? 640 : 760,

@@ -1,5 +1,7 @@
 import type { OverlayData } from '../overlays/types';
-import type { AutoplayRule, MediaBookmark, TimerState } from '../media/types';
+import type { PptxPlaybackState } from './pptxPlayback';
+import type { PresentationTransition } from './presentationTransition';
+import type { AutoplayCheckpoint, AutoplayRule, LocalMediaRef, MediaBookmark, TimerState } from '../media/types';
 
 export const sourceTypes = ['pdf', 'pptx', 'ppt', 'show', 'canva', 'miricanvas'] as const;
 export type SourceType = (typeof sourceTypes)[number];
@@ -23,13 +25,20 @@ export interface PresentationDocumentState {
   lastSlideId: string | null;
   // 외부 W0 자료의 불명확한 위치를 1페이지로 만들어 넣지 않는다.
   knownSlideCount: number | null;
+  slideIds: string[];
   slideDeltas: Record<string, SlideDelta>;
   autoplay?: AutoplayRule;
   mediaBookmarks: Record<string, MediaBookmark>;
+  localMedia?: Record<string, LocalMediaRef>;
+  autoplayCheckpoint?: AutoplayCheckpoint;
+  pptxPlayback?: PptxPlaybackState;
+  timer?: TimerState;
   dirty: boolean;
+  closed?: boolean;
 }
 
 export interface ClassSession {
+  presentationTransition?: PresentationTransition | null;
   id: string;
   title: string;
   revision: number;

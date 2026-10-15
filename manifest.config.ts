@@ -2,6 +2,7 @@ export const manifest = {
   manifest_version: 3,
   name: 'Whale Class Presenter',
   version: '0.0.0',
+  permissions: ['downloads'],
   description: '웨일 클래스 프레젠터 개발 기반. 발표 기능은 단계별 구현 예정입니다.',
   action: {
     default_title: '웨일 클래스 프레젠터',
@@ -9,6 +10,6 @@ export const manifest = {
   },
   background: { service_worker: 'background.js', type: 'module' },
   content_security_policy: {
-    extension_pages: "script-src 'self'; object-src 'self'",
+    extension_pages: "script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; object-src 'self'",
   },
 } satisfies chrome.runtime.ManifestV3;

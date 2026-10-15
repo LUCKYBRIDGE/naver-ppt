@@ -9,5 +9,6 @@ playwright-report/
 .env.*
 !.env.example
 tests/fixtures/private/
+test-materials/
 .DS_Store
 Thumbs.db

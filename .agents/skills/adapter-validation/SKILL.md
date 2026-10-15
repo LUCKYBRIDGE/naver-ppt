@@ -5,6 +5,8 @@ description: 웨일 클래스 프레젠터의 PDF, PPTX, PPT, SHOW와 Canva·미
 
 # 렌더러와 웹 서비스 검증
 
+[PRD v5](../../../naver-ppt_PRD_v5.md) §7/8/9/24/25를 우선한다. visual/media/behavior 세 축과 오프라인·라이선스·성능을 함께 기록하고, 고정된 샘플 개수만으로 지원 승격하지 않는다.
+
 [TECH_SPIKES.md](../../../docs/TECH_SPIKES.md), [COMPATIBILITY_MATRIX.md](../../../docs/COMPATIBILITY_MATRIX.md), [LICENSES.md](../../../docs/LICENSES.md)의 관련 항목을 읽는다. 실험 목표와 실제 지원 수준을 구분한다.
 
 - PDF를 첫 수직 기능으로 완성한다. PDF.js를 우선 실험하고 패키지 worker/폰트/WASM 경로·오프라인·배포 크기·원본 보존을 확인한다.

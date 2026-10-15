@@ -16,6 +16,8 @@ export interface TextBoxOverlay extends OverlayBase {
   // fontPx/paddingPx는 기준 viewport의 논리 px. 표시 배율과 구분한다.
   fitMode: 'auto-max' | 'manual';
   fontPx?: number;
+  referenceWidth?: number;
+  referenceHeight?: number;
   paddingPx: number;
   lineHeight: number;
   align: 'left' | 'center' | 'right';

@@ -1,0 +1,13 @@
+Local modification notice for @web-ppt/core 0.4.5 (MIT)
+
+2026-10-14: naver-ppt applies a build-time transformation to the pinned parser
+to resolve background style references according to the OOXML style matrix:
+0/1000 means no background, 1..999 selects fillStyleLst, 1001 and above
+selects bgFillStyleLst starting at its first entry. Invalid references fail
+instead of being clamped to the last background style.
+The parser's per-slide fallback rethrows this specific unresolved-reference
+error, so a white placeholder cannot be returned as successful parsing.
+
+The original copyright and MIT license remain in web-ppt-core-LICENSE.
+The source transformation and its pinned input hash are maintained in
+scripts/pptx-background-patch.ts. Source presentations are not modified.
