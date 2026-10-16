@@ -299,3 +299,15 @@ OS / 웨일·Chromium 버전 / 디스플레이·DPI / 권한:
 - 앞선 실패 `179202295...`의 12그룹/23쪽 assertion과 98MB Playwright 50MiB buffer 한도는 검증기 결함으로 분리하고 성공 결과에 섞지 않는다.
 - 전체 `scripts/dev.ps1 check` 09:32:01 exit 0: 103 test files / 1,424 tests, TypeScript/Vite/MV3 build, materials 10/10. `node --check`, `git diff --check` 통과.
 - 이 결과는 실제 한 자료의 Player·학생 화면 보호·원본 보존 증거이며, 10종 전체 충실도·물리 메모리·지원 등급 승격은 아니다.
+
+## 2026-10-16 — owner PC 개발 환경 재구성
+
+GitHub 8bf1175와 lockfile 의존성 동기화, 1,424개 자동 테스트 및 MV3 빌드 PASS. 설치 시 시스템 인증서를 프로세스 범위로 사용했다. 실제 자료 corpus는 로컬에 없고 Whale foundation은 격리 브라우저 시작 단계에서 실패해 제품 동작·PPTX 충실도·성능 실험 판정은 그대로 유지한다. 다음 실험은 격리 Whale 실행 원인 확인이다. [환경과 결과](TEST_RESULTS.md).
+
+## 2026-10-16 — owner PC 입력 corpus 준비
+
+로컬 PPTX/PDF 후보 10쌍과 사용자 추가 단독 PPTX 3종을 확보했다. 후보 10쌍의 구조·복사 hash·PDF 20쪽 렌더는 PASS지만 종횡비 불일치 1쌍, 단독 3종의 기준 PDF 부재, 128MiB 초과 1종을 분리 기록한다. 실제 미디어/효과 존재와 제품 재현은 다르며 렌더러 지원 등급을 올리지 않는다. 상세 원본 경로/해시는 Git 제외 test-materials/manifest.local.json에만 보관한다. [실행 기록](TEST_RESULTS.md).
+
+## 2026-10-16 — 현재 한도 안의 PPTX 렌더 제한 확인
+
+한도 이내 12종의 실제 Whale 검사 결과 구조/모델 점검 완료, 전체 미리보기 1종·부분 실패 9종·첫 쪽 실패 2종이다. 현재 한도와 독립적인 쪽별 표시 실패로 기록하고 원인 확인을 다음 작업으로 둔다. 실제 Whale foundation은 사전 합성 영상 생성과 버전 디렉터리 실행 파일 지정 후 PASS했다. 한도 초과 자료는 실행하지 않았으며 입력 한도 확대는 자원/원본·학생 화면 보존 검증을 포함한 후속 개발로 진행한다. [세부 결과](pptx/OWNER_PC_IN_LIMIT.md), [후속 계획](plans/2026-10-16-input-limit-followup.md).

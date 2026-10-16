@@ -1268,3 +1268,43 @@ ode_modules/.cache/whale-pptx-visual/1792021417893, xecutionPassed=true, 원본
 
 - Downloads 새 PPTX 별도 inspection PASS(profile `1792083126421`): 3쪽·64요소·preview 3쪽·원본 보존·외부 요청 0. 대응 PDF가 없어 fidelity corpus에는 추가하지 않았다.
 - inspection verifier의 0-based navigation bug를 수정했고 전체 check PASS.
+
+## 2026-10-16 11:13 KST — owner PC GitHub 동기화 및 개발 환경 검증
+
+- 범위: 기존 FR 전반의 개발 환경 회귀, 새 기능 추가 없음. `master` e49cdd2 → 8bf1175 fast-forward, 원격과 ahead/behind 0/0. 동기화 전 로컬 변경 없음.
+- 환경: Windows 11 Home 10.0.26200, Node 24.15.0, npm 11.12.1, 설치 Whale 5.39.412.57. 작업 폴더 `C:/Users/owner/Documents/ChatGPT/naver-ppt`.
+- 설치: 첫 `npm ci`에서 UNABLE_TO_VERIFY_LEAF_SIGNATURE로 중단. 설치 프로세스에만 NODE_OPTIONS=--use-system-ca를 적용한 재실행 성공(63 packages, audit 0 vulnerabilities). 전역 설정 및 lockfile 변경 없음.
+- `npm run check` exit 0: 스킬 5개, 103파일 / 1,424테스트, TypeScript·Vite·MV3 빌드 PASS. `dist` 생성 완료.
+- 자료 inventory는 sourceCount=0, pairedCount=0. Git 제외 test-materials와 이전 PC 검증 산출물은 GitHub 동기화 대상이 아니다. 자료 검사는 빈 목록에도 exit 0이므로 실제 자료 인수 통과로 해석하지 않는다.
+- `node scripts/verify-whale-foundation.mjs <bundled Playwright index.mjs> <installed whale.exe>` exit 1. profile-1792116768728에서 브라우저 시작 직후 종료, launchPersistentContext의 Target page, context or browser has been closed. 제품 시나리오 미진입이며 원인은 미확정이다.
+- 미실시: 이 PC의 실제 Whale 기능 인수, 물리 모니터/DPI·IME·장시간·cold-offline, 실제 PPTX/PDF 비교 및 성능. 이전 PC의 PASS/FAIL 기록과 지원 판정은 유지한다.
+- 다음: 격리 Whale 자동 실행 환경 진단 및 합성 foundation 재검증, 실제 원본/기준 PDF 확보 후 충실도·메모리 검증 재개.
+
+## 2026-10-16 KST — 개발 위치 변경 검증
+
+- 사용자 지정 개발 위치 `C:/ai_dev/apps/naver-ppt`에 Git 이력·원격·미커밋 변경·의존성을 복사 보존했다. 기존 경로는 앱 사용 중 잠금으로 보존했고 자동 삭제하지 않았다.
+- 복사 직후 Git porcelain 상태가 기존 경로와 동일함을 확인했다. 새 경로 `npm run check` exit 0: 103파일/1,424테스트, TypeScript·Vite·MV3 PASS. 실제 자료는 0종/0짝이며 Whale 재시험은 하지 않았다.
+- 이후 개발은 새 경로에서 수행한다. Codex 프로젝트 UI 연결은 새 폴더로 다시 열어야 한다.
+
+## 2026-10-16 KST — owner PC 로컬 검증 자료 준비
+
+- 범위: FR-003/013, IMPL-T-02/17/28의 입력 자료 준비와 구조 검사. 제품 렌더링/미디어 인수와 구분한다.
+- 기존 로컬 파일에서 PPTX/PDF 10쌍을 Git 제외 test-materials/originals 및 powerpoint-reference로 복사했다. 쌍 합계 47,445,663 bytes, 11~18쪽이며 모든 쌍의 슬라이드/쪽 수가 일치한다.
+- SHA-256 복사 전후 대조와 PPTX ZIP CRC 검사 PASS. pypdf 구조 검사, PDFium으로 PDF 10종 첫/마지막 총 20쪽 렌더 PASS. 대표 2쪽을 이미지로 열어 확인했다. 첫 렌더 시도는 PyMuPDF 미설치로 실패했고 기존 번들 PDFium으로 완료했으며 새 의존성을 설치하지 않았다.
+- 9쌍은 PowerPoint Producer와 16:9 종횡비가 일치한다. 나머지 1쌍은 종횡비가 불일치한다. 동일 버전/시각 충실도는 모두 미확인이다. 원본 경로·해시·수치·선정 스크립트·렌더 보고서는 Git 제외 manifest.local.json 및 reports에 보관한다. 본문/원본은 업로드하지 않았다.
+- 사용자가 originals에 추가한 마스크(2)~(4) 3종도 다운로드 원본과 해시 일치를 확인했다. 각각 36/33/28쪽, audio/video 항목 6/5/5개, timing 존재 33/31/26쪽이다. 항목 존재는 재생 지원 판정이 아니다.
+- 마스크(4)는 163,248,376 bytes로 현재 128MiB 입력 한도 초과 거부용이다. 마스크(2)/(3)은 한도 이내다. 같은 stem PDF는 모두 1쪽이므로 슬라이드 기준 출력으로 채택하지 않았다.
+- npm run check:materials: sourceCount=13, pairedCount=10, exit 0. git check-ignore로 자료/manifest 제외 확인. 제품 코드 변경 없음으로 전체 check는 반복하지 않았다. 직전 새 경로의 1,424테스트·빌드 PASS를 유지한다.
+- 실제 Whale 제품 렌더·미디어·원본 앱 3축 비교는 이번 준비 작업에서 미실시. 다음은 한도 이내 자료의 제품 경로 점검, 마스크(4) 거부 경계, 메모리 및 실제 미디어 재생이다.
+
+## 2026-10-16 KST — 128MiB 한도 이내 실제 Whale 점검
+
+- 사용자 요청대로 현재 입력 한도를 유지하고 한도 이내 12종만 제품 dist에서 검사했다. 마스크(4)는 거부 시험에도 사용하지 않았다. 한도 확대는 docs/plans/2026-10-16-input-limit-followup.md에 후속 개발로 기록했다.
+- FR-003/004/008/013, IMPL-T-02/04/05/28. Windows 11 Home 10.0.26200 / Node 24.15.0 / 실제 Whale 5.39.412.57(Chromium 150), 격리 headless. 원본 지문/경로는 Git 제외 manifest와 reports에 보관한다.
+- Application 루트 whale.exe의 시작 즉시 종료를 재확인했다. 버전 디렉터리의 실제 whale.exe를 사용해 제품 검증에 진입했다. 첫 foundation은 합성 MP4 캐시 부재로 ENOENT, 기존 video-spike로 합성 H.264 인코딩/디코딩/픽셀 시험 PASS 후 재실행했다. 환경 재현 방법을 DEVELOPMENT.md에 추가했다.
+- foundation profile-1792129509904 exit 0 PASS: PDF 편집/비공개 노트/저장/복구/현재·전체 종료·자동 넘김·Player 소유권·Worker 재시작·실제 WAV 및 합성 H.264 Player 회귀. 무음·합성 입력·OPFS picker stand-in이며 물리 인수와 구분한다.
+- 실제 PPTX 검사 12종 exit 0, 감지/모델 슬라이드 수 일치. 그러나 전체 쪽 미리보기 검사 통과 1종, 일부 쪽 표시 실패 9종, 첫 쪽 표시 실패 2종이다. 종료 코드만으로 화면 PASS라 하지 않는다. 자료별 실패 쪽과 결과 ID는 docs/pptx/OWNER_PC_IN_LIMIT.md에 기록했다.
+- 마스크(2): 36쪽/156요소/116효과, 마스크(3): 33쪽/115요소/83효과. 둘 다 첫 쪽 미리보기 표시 실패다. 글꼴 참조는 각각 9종 중 1종, 8종 중 1종만 확인됐으며 실패 원인을 글꼴로 확정하지 않는다. 내장 MP3 실제 재생/원본 트리거 비교는 미실시다.
+- 12종 모두 기존 세션·학생 canvas 보존 및 실행 후 SHA-256 일치를 확인했다. 완전 검사 경로를 마친 10종은 외부 요청 0, pageErrors 0, 5 viewport 무가로넘침을 확인했다. 조기 종료한 2종에는 이 최종 검사 결과를 확대 적용하지 않는다.
+- 제품 소스·의존성·한도 변경 없음. 전체 check는 반복하지 않았고 직전 1,424테스트·타입·Vite·MV3 PASS를 유지한다. 문서 git diff --check 실행. 실제 PowerPoint 기준 3축/물리 메모리/가청 출력/OS chooser/다중 모니터/장시간은 별도 미완료이며 지원 등급을 유지한다.
+- 다음: 한도 이내에서 발견한 쪽별 렌더링 실패 최소 재현과 원인 확인을 진행하고, 이후 자원 예산을 검증하며 입력 한도를 확대한다.

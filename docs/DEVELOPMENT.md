@@ -238,3 +238,12 @@ PDF 보조 시험: dev 서버 5173과 `vite preview --host 127.0.0.1 --port 5174
 미해결 이슈와 재현:
 다음 작업:
 ```
+
+## owner PC의 실제 Whale 검증 실행 (2026-10-16)
+
+이 PC에서는 Application 루트의 whale.exe로 격리 자동화를 시작하면 즉시 종료됐다. 설치된 버전 폴더의 실제 실행 파일 `C:/Program Files/Naver/Naver Whale/Application/5.39.412.57/whale.exe`를 지정하면 제품 검증이 실행된다. 브라우저 업데이트 후 경로/버전을 다시 확인한다. 사용자 평소 프로필이나 기존 브라우저를 종료하지 않는다.
+
+- 검증 스크립트의 첫 인자는 번들 Playwright의 index.mjs, 둘째는 위 실제 Whale 경로다. 입력 PPTX가 필요한 스크립트는 셋째에 읽기 전용 로컬 파일 경로를 전달한다.
+- foundation은 `node_modules/.cache/whale-video-spike/synthetic.mp4`를 요구한다. 새 PC에서는 먼저 `node scripts/verify-whale-video-spike.mjs <Playwright> <Whale>`로 합성 파일을 생성하고, 그 뒤 `node scripts/verify-whale-foundation.mjs <Playwright> <Whale>`를 실행한다.
+- 실제 파일 점검은 `node scripts/verify-whale-pptx-inspection.mjs <Playwright> <Whale> <한도 이내 PPTX>`다. 종료 코드 0이어도 privatePreview.unavailable 또는 unavailableSlides가 있으면 해당 화면은 실패/제한이다. 구조 검사 통과를 전체 충실도 통과로 보고하지 않는다.
+- 현재는 사용자 요청대로 128MiB 이내 자료만 제품 검증에 사용한다. 초과 파일의 거부 시험도 이번 범위에서 제외한다. [한도 확대 후속 계획](plans/2026-10-16-input-limit-followup.md).

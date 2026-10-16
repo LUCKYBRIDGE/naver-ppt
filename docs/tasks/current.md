@@ -1,4 +1,27 @@
 # 인수인계: PRD v5 제품 완성 및 개발 방향 점검
+> **현재 입력 한도 내 실검증 완료 (2026-10-16 KST)**
+> - 사용자 결정: 128MiB 한도 유지·이내 자료만 테스트. 마스크(4)는 이번 거부 시험에서도 제외하고 한도 확대는 후속 개발로 둔다.
+> - 실제 Whale 실행은 버전 폴더 whale.exe로 해결했다. 합성 영상 캐시 생성 후 foundation profile-1792129509904 PASS. 과거 시작 실패는 역사 기록이다.
+> - 한도 이내 12종 구조/모델 점검 완료. 미리보기 전체 쪽 통과 1종, 일부 쪽 실패 9종, 첫 쪽 실패 2종. 원본 해시/기존 발표 화면은 12종 모두 보존. PPTX 지원 등급 유지.
+> - 다음은 쪽별 렌더링 실패 최소 재현/원인 확인이다. 자료별 실패 쪽과 재현 ID는 docs/pptx/OWNER_PC_IN_LIMIT.md, 한도 확대 계획은 docs/plans/2026-10-16-input-limit-followup.md.
+
+> **로컬 자료 확보 (2026-10-16 KST, 최신)**
+> - 새 개발 경로 test-materials에 PPTX 13종·후보 PDF 10종. 기존의 이 PC 0종/0짝 기록은 준비 전 상태다.
+> - 후보 10쌍은 쪽 수 일치·원본/복사 SHA-256·ZIP CRC·PDF 첫/끝 20쪽 렌더 PASS. PowerPoint 생성 정보와 종횡비 일치 9쌍, 종횡비 불일치 1쌍이다. 기준 출력 동일 버전과 전체 충실도는 미확인이다.
+> - 사용자 추가 마스크(2)/(3)/(4)는 36/33/28쪽, 내장 audio/video 6/5/5개. (4)는 163,248,376 bytes로 현재 128MiB 초과 거부용. 같은 stem PDF는 1쪽이어서 기준 출력으로 채택하지 않았다.
+> - 원본과 보고서는 Git 제외, 상세 목록은 test-materials/manifest.local.json. 다음은 Whale 실행 환경 해결 후 제품 렌더/미디어 및 입력 한도 검증이다.
+
+> **개발 경로 변경 (2026-10-16 KST)**
+> - 현재 개발 위치는 `C:/ai_dev/apps/naver-ppt`이다. 기존 owner Documents 경로는 앱 사용 중 잠금으로 직접 이동하지 못해 보존용 사본으로 남겼다. 이후 개발 명령은 새 경로에서만 실행한다.
+> - Git 이력·원격·미커밋 문서 4개를 보존했고, 새 경로에서 103파일/1,424테스트·타입·Vite·MV3 검증을 통과했다. 실제 자료 0종/0짝과 Whale 미검증 제한은 유지한다.
+
+> **owner PC 동기화 (2026-10-16 11:13 KST)**
+> - 작업 폴더: `C:/Users/owner/Documents/ChatGPT/naver-ppt`. `master`를 GitHub `origin/master`의 `8bf1175`로 fast-forward했다. PRD v5와 프로젝트 스킬을 함께 반영했다.
+> - Node 24.15.0 / npm 11.12.1, lockfile 기준 `npm ci` 완료. 설치 프로세스에만 `NODE_OPTIONS=--use-system-ca`를 적용했다.
+> - 이 PC의 `npm run check`: 103파일 / 1,424테스트·타입·Vite·MV3 PASS. `test-materials`는 없으며 inventory는 0종/0짝이다. 아래 10종/10짝과 실제 Whale PASS는 이전 PC 기록이다.
+> - 설치된 Whale 5.39.412.57의 foundation 자동 실행은 브라우저 시작 직후 종료되어 실패했다(`profile-1792116768728`). 제품 시나리오에는 진입하지 못했다.
+> - 다음 작업: 이 PC의 격리 Whale 자동 실행 원인을 확인하고 합성 foundation을 재검증한다. 실제 자료 비교·메모리 인수는 제외된 원본/기준 PDF의 로컬 확보 후 이어간다. 전체 PPTX 지원 등급은 유지한다.
+
 > **현재 상태 스냅샷 (2026-10-16 KST, 재개 시점)**
 > - 실제 자료: `test-materials/originals` PPTX 10종, `test-materials/powerpoint-reference` 기준 PDF 10종 (`sourceCount=10`, `pairedCount=10`).
 > - 자동 검증: 103개 테스트 파일 / 1,424개 테스트, TypeScript·Vite·MV3 빌드 PASS.
